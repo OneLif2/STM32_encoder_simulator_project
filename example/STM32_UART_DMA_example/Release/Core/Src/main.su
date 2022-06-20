@@ -1,0 +1,6 @@
+../Core/Src/main.c:78:6:HAL_UARTEx_RxEventCallback	16	static
+../Core/Src/main.c:93:6:tx_msg	8	static
+../Core/Src/main.c:88:6:printpolestep	8	static
+../Core/Src/main.c:216:6:SystemClock_Config	80	static,ignoring_inline_asm
+../Core/Src/main.c:110:5:main	64	static,ignoring_inline_asm
+../Core/Src/main.c:332:6:Error_Handler	0	static,ignoring_inline_asm
