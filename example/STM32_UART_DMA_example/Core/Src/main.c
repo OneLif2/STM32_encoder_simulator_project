@@ -85,18 +85,20 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
 	}
 }
 
+// Create counter msg
 void printpolestep( txbuffer, counter) {
 	sprintf(txbuffer, "counter = %03d\n\r", counter);
 	tx_msg((char*) txbuffer);
 }
 
+// Tx msg from Uart 2
 void tx_msg( txbuffer) {
 	HAL_UART_Transmit_DMA(&huart2, (uint8_t*) txbuffer, strlen(txbuffer));
 	HAL_Delay(100);
 }
 
 uint32_t counter = 0;
-int direction_mode = 1;
+int direction_mode = 1; //control counter direction
 _Bool pause = 0;
 bool gled_state = 1; // g led state
 bool bled_state = 0; // b led state
@@ -133,6 +135,7 @@ int main(void) {
 	MX_DMA_Init();
 	MX_USART2_UART_Init();
 	/* USER CODE BEGIN 2 */
+	// for hal dma feature
 	HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxbuff, rxbuff_size); // call uart rx function, data store in rxbuff
 	__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT); // hal dma it start by default, disable half tx IT, this IT trigger when half data has been transfer
 	/* USER CODE END 2 */
@@ -165,9 +168,6 @@ int main(void) {
 
 				sprintf(txbuffer, "program stop \n\r");
 				tx_msg((char*) txbuffer);
-
-				HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6, GPIO_PIN_RESET);   // IN1
-				HAL_GPIO_WritePin(GPIOC, GPIO_PIN_7, GPIO_PIN_RESET);   // IN2
 
 			} else if (strncmp((char*) mainbuff, "forward", rxdatasize - 1)
 					== 0) {
