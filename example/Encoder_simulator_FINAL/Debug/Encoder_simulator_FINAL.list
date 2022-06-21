@@ -1831,10 +1831,10 @@ int main(void)
  8000d76:	b2da      	uxtb	r2, r3
  8000d78:	4b23      	ldr	r3, [pc, #140]	; (8000e08 <main+0x2b0>)
  8000d7a:	701a      	strb	r2, [r3, #0]
-			stepper_step_angle(1, direction_mode, 1);
+			stepper_step_angle(0.25, direction_mode, 1);
  8000d7c:	4b1f      	ldr	r3, [pc, #124]	; (8000dfc <main+0x2a4>)
  8000d7e:	681b      	ldr	r3, [r3, #0]
- 8000d80:	20fe      	movs	r0, #254	; 0xfe
+ 8000d80:	20fa      	movs	r0, #250	; 0xfa
  8000d82:	0580      	lsls	r0, r0, #22
  8000d84:	2201      	movs	r2, #1
  8000d86:	0019      	movs	r1, r3
