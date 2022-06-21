@@ -17,7 +17,7 @@
 ### <u>Hardware and Wirings</u>:
 1.) STM32F0DISCOVERY
 
-2.) Arduino
+2.) Support Arduino or CP2102 UART to USB module to Rx and Tx data
 
 | Wiring ||
 |:---:|:---:|
