@@ -28,6 +28,22 @@
 
 
 ### <u>Initial setting in STM32CubdeMX</u>:
+1. Setup connectivity USART2
+
+    a. Mode >> Asynchronous;
+    
+    b. Configuration >> Parameter Settings >> Basic Parameters >> set Baud Rate e.g. 115200 (8N1);
+    
+    c. in DMA Setting, add "USART2_RX" and "USART2_TX";
+
+    b. DMA Request Settings keep default settings >> Mode : Normal, tick Memory, Data Width = Byte;
+    
+    d. in NVIC settings, tick USART2 global interrupt
+
+2. Setup RCC
+
+    a. Configuration >> NVIC Settings >> Enable RCC global interrupt
+
 
 
 ##  Example 2 - STM32 Encoder simulator
