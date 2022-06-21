@@ -4,7 +4,7 @@
 ##  Example 1 - STM32 UART DMA || Receive, Compare and Transmit unknown length DATA
 
 ### <u>Features</u> :
-1.) Using serial monitor of Arduino IDE to receive and Transmit data;
+1.) Support using serial monitor of Arduino IDE or CP2102 UART to USB module to receive and Transmit data;
 
 2.) STM32 will keep sending the messge(counter value) to Arduino;
 
