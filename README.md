@@ -12,7 +12,7 @@
 
 4.) STM32 will filter out invalid data and blank data sent by Arduino
 
-5.) STM32 blue and green LED will blinking with patten
+5.) STM32 blue and green LEDs will blink in a specific pattern
 
 ### <u>Hardware and Wirings</u>:
 1.) STM32F0DISCOVERY
