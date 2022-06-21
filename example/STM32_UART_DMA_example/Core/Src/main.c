@@ -72,12 +72,23 @@ uint8_t rxbuff[rxbuff_size]; // where DMA is going to copy data
 uint8_t blankdata[mainbuff_size]; // where DMA is going to copy data
 uint8_t mainbuff[mainbuff_size]; // Data will be finally store here
 _Bool uart_rx_int = 0;
+uint32_t counter = 0;
+
+int direction_mode = 1; //control counter direction
+_Bool pause = 0;
+bool gled_state = 1; // g led state
+bool bled_state = 0; // b led state
 
 // Code for DMA data Rx and Tx
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
 	if (huart->Instance == USART2) {
-		memcpy(mainbuff, rxbuff, Size - 1); // store value fm Uart2, need #include "string.h"
+		memcpy(mainbuff, blankdata, mainbuff_size);
+		//remove the enter digit from Arduino serial monitor
+		if (rxbuff[Size-1] == 10){
+			Size = Size -1;
+		}
+		memcpy(mainbuff, rxbuff, Size); // store value fm Uart2, need #include "string.h" //Size - 1
 		HAL_UARTEx_ReceiveToIdle_DMA(&huart2, rxbuff, rxbuff_size); // rx stop after receive, restart it again
 		__HAL_DMA_DISABLE_IT(&hdma_usart2_rx, DMA_IT_HT);
 		rxdatasize = Size;
@@ -96,12 +107,6 @@ void tx_msg( txbuffer) {
 	HAL_UART_Transmit_DMA(&huart2, (uint8_t*) txbuffer, strlen(txbuffer));
 	HAL_Delay(100);
 }
-
-uint32_t counter = 0;
-int direction_mode = 1; //control counter direction
-_Bool pause = 0;
-bool gled_state = 1; // g led state
-bool bled_state = 0; // b led state
 
 /* USER CODE END 0 */
 
@@ -148,10 +153,7 @@ int main(void) {
 		/* USER CODE BEGIN 3 */
 		if (uart_rx_int == 1) {
 			uart_rx_int = 0;
-			if (rxdatasize == 1) {
-				continue;
-			}
-			if (strncmp((char*) mainbuff, "resume", rxdatasize - 1) == 0) {
+			if (strncmp((char*) mainbuff, "resume", rxdatasize - 1) == 0 && strlen(mainbuff) == 6) {
 				pause = 0;
 
 				sprintf(txbuffer, " '%s' has been recieved \n", mainbuff);
@@ -160,7 +162,7 @@ int main(void) {
 				sprintf(txbuffer, "program resume \n\r");
 				tx_msg((char*) txbuffer);
 
-			} else if (strncmp((char*) mainbuff, "stop", rxdatasize - 1) == 0) {
+			} else if (strncmp((char*) mainbuff, "stop", rxdatasize - 1) == 0 && strlen(mainbuff) == 4) {
 				pause = 1;
 
 				sprintf(txbuffer, " '%s' has been recieved \n", mainbuff);
@@ -170,14 +172,14 @@ int main(void) {
 				tx_msg((char*) txbuffer);
 
 			} else if (strncmp((char*) mainbuff, "forward", rxdatasize - 1)
-					== 0) {
+					== 0  && strlen(mainbuff) == 7) {
 
 				sprintf(txbuffer, " '%s' has been recieved \n", mainbuff);
 				tx_msg((char*) txbuffer);
 				direction_mode = 1;
 
 			} else if (strncmp((char*) mainbuff, "backward", rxdatasize - 1)
-					== 0) {
+					== 0 && strlen(mainbuff) == 8) {
 
 				sprintf(txbuffer, " '%s' has been recieved \n", mainbuff);
 				tx_msg((char*) txbuffer);
@@ -190,7 +192,7 @@ int main(void) {
 				sprintf(txbuffer, "===invalid input=== \n\r");
 				tx_msg((char*) txbuffer);
 			}
-			memcpy(mainbuff, blankdata, rxbuff_size);
+			//memcpy(mainbuff, blankdata, rxbuff_size);
 		}
 
 		if (pause == 0) {
