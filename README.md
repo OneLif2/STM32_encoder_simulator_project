@@ -80,7 +80,7 @@
 
 
 
-### <u>Initial setting in STM32CubdeMX</u>:
+# <u>Initial setting in STM32CubdeMX</u>:
 1. Setup connectivity USART2
 
     a. Mode >> Asynchronous;
@@ -115,6 +115,16 @@
 
     d. Maximum output speed : Low
 
-## Program output example
+# Program output example
+
+### Wiring example
+![](reference/wiring.jpeg)
+
+### Clockwise rotation
+![](reference/cw_dir.jpeg)
+
+### Counterclockwise rotation
 ![](reference/ccw_dir.jpeg)
 
+### Reading encoder signal with Mikroe counter click board
+![](reference/Mikroe%20counter%20click%20board.jpeg)
