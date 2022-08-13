@@ -65,15 +65,15 @@
 
 2.) Support Arduino or CP2102 UART to USB module to Rx and Tx data
 
-| Wiring ||
-|:---:|:---:|
+## Rx and TX pins Wiring 
 | STM32 | Arduino Uno |
+|:---:|:---:|
 | PA2 |  Pin 1 |
 | PA3 | Pin 0 |
 
-| Wiring ||
-|:---:|:---:|
+## Encoder pins Wiring 
 | STM32 | CLP's encoder reader |
+|:---:|:---:|
 | PC6| Channel A |
 | PC7  | Channel B |
 | PB15 |  Button input |
@@ -115,5 +115,6 @@
 
     d. Maximum output speed : Low
 
-
+## Program output example
+![](reference/ccw_dir.jpeg)
 
