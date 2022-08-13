@@ -116,7 +116,7 @@
 
 # Program output example
 
-### Wiring example
+### Wiring example_
 ![](reference/Wiring.jpeg)
 
 ### Encoder pin wiring example 
