@@ -20,12 +20,11 @@
 2.) Support Arduino or CP2102 UART to USB module to Rx and Tx data
 
 ## Rx and TX pins Wiring 
-|:---:|:---:|
+
 | STM32 | Arduino Uno |
+|:---:|:---:|
 | PA2 Pin |  Pin 1 |
 | PA3 Pin | Pin 0 |
-
-
 
 ### <u>Initial setting in STM32CubdeMX</u>:
 1. Setup connectivity USART2
