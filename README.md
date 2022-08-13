@@ -19,7 +19,7 @@
 
 2.) Support Arduino or CP2102 UART to USB module to Rx and Tx data
 
-| Wiring ||
+## Rx and TX pins Wiring 
 |:---:|:---:|
 | STM32 | Arduino Uno |
 | PA2 Pin |  Pin 1 |
@@ -118,7 +118,10 @@
 # Program output example
 
 ### Wiring example
-![](reference/wiring.jpeg)
+![](reference/Wiring.jpeg)
+
+### Encoder pin wiring example 
+![](reference/Wiring_encoder_pin.jpeg)
 
 ### Clockwise rotation
 ![](reference/cw_dir.jpeg)
@@ -127,4 +130,4 @@
 ![](reference/ccw_dir.jpeg)
 
 ### Reading encoder signal with Mikroe counter click board
-![](reference/Mikroe%20counter%20click%20board.jpeg)
+![](reference/Mikroe_Click_board.jpeg)
